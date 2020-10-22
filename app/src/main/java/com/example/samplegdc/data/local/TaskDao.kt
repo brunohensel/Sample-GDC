@@ -17,6 +17,15 @@ interface TaskDao {
     @Query("SELECT * FROM task_table ORDER BY name ASC")
     fun getAllTasks(): LiveData<List<TaskDto>>
 
+    @Query("SELECT * FROM task_table WHERE id = :id")
+    fun getTaskById(id: Int): LiveData<TaskDto>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(taskDto: TaskDto)
+
+    @Query("DELETE FROM task_table")
+    fun deleteAll()
+
+    @Query("DELETE FROM task_table WHERE id = :id")
+    fun deleteById(id: Int)
 }
