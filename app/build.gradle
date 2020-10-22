@@ -23,6 +23,15 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 }
 
 dependencies {
@@ -41,7 +50,6 @@ dependencies {
 
 
     def lifecycle_version = "2.2.0"
-    def arch_version = "2.1.0"
 
     // ViewModel
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
@@ -57,10 +65,19 @@ dependencies {
 
 
     //Test
+    def arch_version = "2.1.0"
     testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     testImplementation "androidx.room:room-testing:$room_version"
     testImplementation "androidx.arch.core:core-testing:$arch_version"
     testImplementation "androidx.paging:paging-common-ktx:$paging_version"
+
+    //Hil dagger dependency
+    def hilt_viewmodel = "1.0.0-alpha02"
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
+    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hilt_viewmodel"
+    kapt "androidx.hilt:hilt-compiler:$hilt_viewmodel"
+    implementation "androidx.fragment:fragment-ktx:1.2.5"
 }
