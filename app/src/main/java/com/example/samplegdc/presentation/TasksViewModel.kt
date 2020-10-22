@@ -11,6 +11,7 @@ class TasksViewModel @Inject constructor(
     application: GdcApplication,
     private val repository: TaskRepository
 ) : AndroidViewModel(application) {
+
     val allTasks: LiveData<List<TaskDto>>
 
     init {
@@ -22,18 +23,19 @@ class TasksViewModel @Inject constructor(
             repository.addTask(taskDto)
         }
     }
-}
 
-class TasksViewModelFactory @Inject constructor(
-    private val application: GdcApplication,
-    private val repository: TaskRepository
-) : ViewModelProvider.Factory {
+    class TasksViewModelFactory @Inject constructor(
+        private val application: GdcApplication,
+        private val repository: TaskRepository
+    ) : ViewModelProvider.Factory {
 
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return if (modelClass.isAssignableFrom(TasksViewModel::class.java)) {
-            TasksViewModel(application, repository) as T
-        } else {
-            throw  IllegalArgumentException("ViewModel not found")
+        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+            return if (modelClass.isAssignableFrom(TasksViewModel::class.java)) {
+                TasksViewModel(application, repository) as T
+            } else {
+                throw  IllegalArgumentException("ViewModel not found")
+            }
         }
     }
 }
+
