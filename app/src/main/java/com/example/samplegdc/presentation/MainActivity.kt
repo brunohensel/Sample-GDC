@@ -1,4 +1,4 @@
-package com.example.samplegdc.feature
+package com.example.samplegdc.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

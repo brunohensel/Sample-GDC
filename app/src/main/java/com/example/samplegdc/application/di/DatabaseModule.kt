@@ -2,8 +2,8 @@ package com.example.samplegdc.application.di
 
 import android.content.Context
 import androidx.room.Room
-import com.example.samplegdc.feature.data.local.TaskDao
-import com.example.samplegdc.feature.database.GdcDatabase
+import com.example.samplegdc.data.local.TaskDao
+import com.example.samplegdc.data.database.GdcDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

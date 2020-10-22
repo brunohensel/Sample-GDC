@@ -1,11 +1,11 @@
-package com.example.samplegdc.feature.data.local
+package com.example.samplegdc.data.local
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.samplegdc.feature.data.entity.TaskDto
+import com.example.samplegdc.data.entity.TaskDto
 
 /**[Dao] means data access object.
  * In this interface the SQL queries will be specified and the method calls will be associated

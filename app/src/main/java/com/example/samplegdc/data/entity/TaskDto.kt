@@ -1,4 +1,4 @@
-package com.example.samplegdc.feature.data.entity
+package com.example.samplegdc.data.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

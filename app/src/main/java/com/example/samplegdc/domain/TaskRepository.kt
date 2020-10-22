@@ -1,8 +1,8 @@
-package com.example.samplegdc.feature.data
+package com.example.samplegdc.domain
 
 import androidx.lifecycle.LiveData
-import com.example.samplegdc.feature.data.entity.TaskDto
-import com.example.samplegdc.feature.data.local.TaskDao
+import com.example.samplegdc.data.entity.TaskDto
+import com.example.samplegdc.data.local.TaskDao
 import javax.inject.Inject
 import javax.inject.Singleton
 

@@ -1,9 +1,9 @@
-package com.example.samplegdc.feature.database
+package com.example.samplegdc.data.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.example.samplegdc.feature.data.entity.TaskDto
-import com.example.samplegdc.feature.data.local.TaskDao
+import com.example.samplegdc.data.entity.TaskDto
+import com.example.samplegdc.data.local.TaskDao
 
 @Database(entities = [TaskDto::class], version = 1, exportSchema = false)
 abstract class GdcDatabase : RoomDatabase() {
