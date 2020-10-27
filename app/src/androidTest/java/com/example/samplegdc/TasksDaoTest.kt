@@ -113,7 +113,7 @@ class TasksDaoTest {
     }
 
     @Test
-    fun insert() = runBlocking{
+    fun insert() = runBlocking {
         //Given
         val task = TaskDto(name = "test")
 
@@ -123,5 +123,24 @@ class TasksDaoTest {
         //Then
         val allTasks = taskDao.getAllTasks().waitForValue()
         assertEquals(allTasks[0].name, task.name)
+    }
+
+
+    @Test
+    fun edit() {
+        //Given
+        val task = TaskDto(name = "task")
+        runBlocking {
+            taskDao.insert(task)
+        }
+        val allTasks = taskDao.getAllTasks().waitForValue()
+        val updatedTask = allTasks[0].copy(name = "NewName")
+
+        //When
+        taskDao.upDate(updatedTask)
+
+        //Then
+        val refreshedTask = taskDao.getAllTasks().waitForValue()
+        assertEquals(refreshedTask[0].name, updatedTask.name)
     }
 }

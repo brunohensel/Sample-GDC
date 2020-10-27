@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "task_table")
 data class TaskDto(
     @PrimaryKey(autoGenerate = true)
-    val id: Int = 0,
+    val id: Long = 0,
     val name: String,
     val state: String = Status.TODO.name
 )
