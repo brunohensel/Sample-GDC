@@ -26,6 +26,12 @@ class TasksViewModel @Inject constructor(
         }
     }
 
+    fun deleteAll() {
+        viewModelScope.launch(IO) {
+            repository.deleteAll()
+        }
+    }
+
     class TasksViewModelFactory @Inject constructor(
         private val application: GdcApplication,
         private val repository: TaskRepository

@@ -24,4 +24,8 @@ class TaskRepository @Inject constructor(private val taskDao: TaskDao) {
     fun deleteById(taskId: Long) {
         taskDao.deleteById(taskId)
     }
+
+    suspend fun deleteAll() {
+        taskDao.deleteAll()
+    }
 }

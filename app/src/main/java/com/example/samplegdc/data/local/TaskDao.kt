@@ -21,10 +21,10 @@ interface TaskDao {
     suspend fun insert(taskDto: TaskDto)
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
-    fun upDate(taskDto: TaskDto)
+    suspend fun upDate(taskDto: TaskDto)
 
     @Query("DELETE FROM task_table")
-    fun deleteAll()
+    suspend fun deleteAll()
 
     @Query("DELETE FROM task_table WHERE id = :id")
     fun deleteById(id: Long)
