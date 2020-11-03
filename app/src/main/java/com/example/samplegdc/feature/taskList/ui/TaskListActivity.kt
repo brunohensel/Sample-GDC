@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.samplegdc.R
 import com.example.samplegdc.application.GdcApplication
-import com.example.samplegdc.data.entity.TaskDto
 import com.example.samplegdc.domain.TaskRepository
 import com.example.samplegdc.feature.taskAdd.TaskAddActivity
 import com.example.samplegdc.feature.taskDetail.TaskDetailActivity
@@ -45,8 +44,6 @@ class TaskListActivity : AppCompatActivity() {
             val intent = TaskAddActivity.start(this)
             startActivity(intent)
         }
-
-        viewModel.addTask(TaskDto(name = "test"))
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

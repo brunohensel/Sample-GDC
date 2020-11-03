@@ -21,12 +21,14 @@ class TaskListAdapter internal constructor(
         RecyclerView.ViewHolder(itemView), View.OnClickListener {
         private val taskItemNameView: TextView = itemView.findViewById(R.id.txtItemTaskName)
         private val taskItemStatusView: TextView = itemView.findViewById(R.id.txtItemTaskStatus)
+        private val taskItemDate: TextView = itemView.findViewById(R.id.noteDate)
         private lateinit var taskDto: TaskDto
 
         fun bind(data: TaskDto) {
             taskDto = data
             taskItemNameView.text = data.name
             taskItemStatusView.text = data.state
+            taskItemDate.text = data.createdAt
 
             itemView.setOnClickListener {
                 listener.invoke(taskDto.id)

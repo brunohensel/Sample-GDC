@@ -5,7 +5,7 @@ import androidx.room.RoomDatabase
 import com.example.samplegdc.data.entity.TaskDto
 import com.example.samplegdc.data.local.TaskDao
 
-@Database(entities = [TaskDto::class], version = 1, exportSchema = false)
+@Database(entities = [TaskDto::class], version = 3, exportSchema = false)
 abstract class GdcDatabase : RoomDatabase() {
 
     abstract fun taskDao(): TaskDao

@@ -9,7 +9,8 @@ data class TaskDto(
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
     val name: String,
-    val state: String = Status.TODO.name
+    val state: String = Status.TODO.name,
+    var createdAt: String
 )
 
 enum class Status {

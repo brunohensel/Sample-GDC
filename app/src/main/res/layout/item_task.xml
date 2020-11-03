@@ -10,13 +10,25 @@
 
     <TextView
         android:id="@+id/txtItemTaskName"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/noteDate"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="My task name here" />
+
+    <TextView
+        android:id="@+id/noteDate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        tools:text="Some Note Title"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/txtItemTaskName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/txtItemTaskName" />
 
     <TextView
         android:id="@+id/txtItemTaskStatus"
@@ -28,6 +40,7 @@
         tools:text="TODO" />
 
     <View
+        android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="8dp"
