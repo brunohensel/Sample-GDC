@@ -1,4 +1,4 @@
-package com.example.samplegdc.taskAdd
+package com.example.samplegdc.feature.taskAdd
 
 import android.content.Context
 import android.content.Intent

@@ -14,4 +14,14 @@ class TaskRepository @Inject constructor(private val taskDao: TaskDao) {
     }
 
     fun getAllTasks(): LiveData<List<TaskDto>> = taskDao.getAllTasks()
+
+    fun getTaskById(taskId: Long): LiveData<TaskDto> = taskDao.getTaskById(taskId)
+
+    suspend fun update(taskDto: TaskDto) {
+        taskDao.upDate(taskDto)
+    }
+
+    fun deleteById(taskId: Long) {
+        taskDao.deleteById(taskId)
+    }
 }

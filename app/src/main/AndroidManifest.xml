@@ -10,8 +10,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".taskAdd.TaskAddActivity"></activity>
-        <activity android:name=".taskList.ui.TaskListActivity">
+        <activity android:name="com.example.samplegdc.feature.taskAdd.TaskAddActivity" />
+        <activity android:name=".feature.taskDetail.TaskDetailActivity" />
+        <activity android:name="com.example.samplegdc.feature.taskList.ui.TaskListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,4 +1,4 @@
-package com.example.samplegdc.taskList.ui
+package com.example.samplegdc.feature.taskList.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -7,8 +7,9 @@ import com.example.samplegdc.R
 import com.example.samplegdc.application.GdcApplication
 import com.example.samplegdc.data.entity.TaskDto
 import com.example.samplegdc.domain.TaskRepository
-import com.example.samplegdc.taskAdd.TaskAddActivity
-import com.example.samplegdc.taskList.TasksViewModel
+import com.example.samplegdc.feature.taskAdd.TaskAddActivity
+import com.example.samplegdc.feature.taskDetail.TaskDetailActivity
+import com.example.samplegdc.feature.taskList.TasksViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_task_list.*
 import javax.inject.Inject
@@ -53,6 +54,6 @@ class TaskListActivity : AppCompatActivity() {
     }
 
     private fun tasksClickListener(id: Long) {
-        TODO("Not yet implemented")
+        startActivity(TaskDetailActivity.start(this, id))
     }
 }

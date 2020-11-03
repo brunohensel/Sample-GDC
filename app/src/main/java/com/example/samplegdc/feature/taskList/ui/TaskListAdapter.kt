@@ -1,4 +1,4 @@
-package com.example.samplegdc.taskList.ui
+package com.example.samplegdc.feature.taskList.ui
 
 import android.content.Context
 import android.view.LayoutInflater

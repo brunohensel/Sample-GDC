@@ -1,4 +1,4 @@
-package com.example.samplegdc.taskList
+package com.example.samplegdc.feature.taskList
 
 import android.app.Application
 import androidx.lifecycle.*
