@@ -39,6 +39,7 @@ class TaskListActivity : AppCompatActivity() {
         ).get(TasksViewModel::class.java)
 
         initObservers()
+        viewModel.getAllTasks(this)
 
         fabAddTask.setOnClickListener {
             val intent = TaskAddActivity.start(this)
@@ -54,6 +55,7 @@ class TaskListActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_delete_all -> viewModel.deleteAll()
+            R.id.action_order_date -> viewModel.orderByDateASC()
             else -> return super.onOptionsItemSelected(item)
         }
         return false

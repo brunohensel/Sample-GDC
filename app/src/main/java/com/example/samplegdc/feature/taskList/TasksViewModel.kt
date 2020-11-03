@@ -6,7 +6,9 @@ import com.example.samplegdc.application.GdcApplication
 import com.example.samplegdc.data.entity.TaskDto
 import com.example.samplegdc.domain.TaskRepository
 import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class TasksViewModel @Inject constructor(
@@ -14,15 +16,27 @@ class TasksViewModel @Inject constructor(
     private val repository: TaskRepository
 ) : AndroidViewModel(application) {
 
-    val allTasks: LiveData<List<TaskDto>>
+    private val _allTasks: MutableLiveData<List<TaskDto>> = MutableLiveData()
 
-    init {
-        allTasks = repository.getAllTasks()
+    var allTasks: LiveData<List<TaskDto>> = _allTasks
+
+    fun getAllTasks(lifecycleOwner: LifecycleOwner) {
+        viewModelScope.launch(IO) {
+            val tasks = repository.getAllTasks()
+            withContext(Main) {
+                tasks.observe(lifecycleOwner, Observer {
+                    _allTasks.value = it
+                })
+            }
+        }
     }
 
-    fun addTask(taskDto: TaskDto) {
+    fun orderByDateASC() {
         viewModelScope.launch(IO) {
-            repository.addTask(taskDto)
+            val tasks = repository.orderByDateASC()
+            withContext(Main) {
+                _allTasks.value = tasks
+            }
         }
     }
 

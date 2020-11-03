@@ -28,4 +28,7 @@ class TaskRepository @Inject constructor(private val taskDao: TaskDao) {
     suspend fun deleteAll() {
         taskDao.deleteAll()
     }
+
+    fun orderByDateASC() =
+        taskDao.orderByDateASC()
 }
