@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.samplegdc.R
 import com.example.samplegdc.data.entity.TaskDto
+import org.threeten.bp.format.DateTimeFormatter
 
 class TaskListAdapter internal constructor(
     context: Context,
@@ -28,7 +29,8 @@ class TaskListAdapter internal constructor(
             taskDto = data
             taskItemNameView.text = data.name
             taskItemStatusView.text = data.state
-            taskItemDate.text = data.createdAt
+            taskItemDate.text =
+                data.createdAt?.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"))
 
             itemView.setOnClickListener {
                 listener.invoke(taskDto.id)

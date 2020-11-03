@@ -10,10 +10,10 @@ import com.example.samplegdc.R
 import com.example.samplegdc.application.GdcApplication
 import com.example.samplegdc.data.entity.TaskDto
 import com.example.samplegdc.domain.TaskRepository
-import com.example.samplegdc.util.DateUtil.getCurrentTimestamp
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_task_new.*
+import org.threeten.bp.OffsetDateTime
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -40,7 +40,7 @@ class TaskAddActivity : AppCompatActivity() {
         btnTaskNewSave.setOnClickListener {
             val name = edtTaskNewName.text.toString()
             if (name.isNotEmpty()) {
-                viewModel.insert(TaskDto(name = name, createdAt = getCurrentTimestamp()))
+                viewModel.insert(TaskDto(name = name, createdAt = OffsetDateTime.now()))
                 finish()
             } else {
                 Snackbar.make(edtTaskNewName, R.string.name_required, Snackbar.LENGTH_LONG).show()

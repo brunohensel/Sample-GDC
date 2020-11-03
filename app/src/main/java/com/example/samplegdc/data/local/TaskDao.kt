@@ -29,11 +29,6 @@ interface TaskDao {
     @Query("DELETE FROM task_table WHERE id = :id")
     fun deleteById(id: Long)
 
-    @Query(
-        """
-        SELECT * FROM task_table
-        ORDER BY createdAt DESC
-        """
-    )
+    @Query(" SELECT * FROM task_table ORDER BY datetime(createdAt)")
     fun orderByDateASC(): List<TaskDto>
 }
