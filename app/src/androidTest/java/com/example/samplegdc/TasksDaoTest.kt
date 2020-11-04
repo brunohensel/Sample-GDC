@@ -137,7 +137,9 @@ class TasksDaoTest {
         val updatedTask = allTasks[0].copy(name = "NewName")
 
         //When
-        taskDao.upDate(updatedTask)
+        runBlocking {
+            taskDao.upDate(updatedTask)
+        }
 
         //Then
         val refreshedTask = taskDao.getAllTasks().waitForValue()
