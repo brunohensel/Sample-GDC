@@ -29,6 +29,6 @@ class TaskRepository @Inject constructor(private val taskDao: TaskDao) {
         taskDao.deleteAll()
     }
 
-    fun orderByDateASC() =
-        taskDao.orderByDateASC()
+    fun orderByDateDESC(): LiveData<List<TaskDto>> =
+        taskDao.orderByDateDESC()
 }

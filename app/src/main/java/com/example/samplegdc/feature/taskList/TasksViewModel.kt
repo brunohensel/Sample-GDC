@@ -6,9 +6,7 @@ import com.example.samplegdc.application.GdcApplication
 import com.example.samplegdc.data.entity.TaskDto
 import com.example.samplegdc.domain.TaskRepository
 import kotlinx.coroutines.Dispatchers.IO
-import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class TasksViewModel @Inject constructor(
@@ -16,28 +14,26 @@ class TasksViewModel @Inject constructor(
     private val repository: TaskRepository
 ) : AndroidViewModel(application) {
 
-    private val _allTasks: MutableLiveData<List<TaskDto>> = MutableLiveData()
+    private val _filter = MutableLiveData<FilterIntent>()
+    private val _allTasks: LiveData<List<TaskDto>> = _filter
+        .switchMap {
+            when (it) {
+                FilterIntent.ASC -> repository.getAllTasks()
+                FilterIntent.DATE -> repository.orderByDateDESC()
+                else -> {
+                    throw java.lang.IllegalArgumentException("Unknown filter option $it")
+                }
+            }
+        }
+
+    init {
+        filter(FilterIntent.ASC)
+    }
 
     var allTasks: LiveData<List<TaskDto>> = _allTasks
 
-    fun getAllTasks(lifecycleOwner: LifecycleOwner) {
-        viewModelScope.launch(IO) {
-            val tasks = repository.getAllTasks()
-            withContext(Main) {
-                tasks.observe(lifecycleOwner, Observer {
-                    _allTasks.value = it
-                })
-            }
-        }
-    }
-
-    fun orderByDateASC() {
-        viewModelScope.launch(IO) {
-            val tasks = repository.orderByDateASC()
-            withContext(Main) {
-                _allTasks.value = tasks
-            }
-        }
+    fun filter(intent: FilterIntent) {
+        _filter.value = intent
     }
 
     fun deleteAll() {
@@ -59,5 +55,10 @@ class TasksViewModel @Inject constructor(
             }
         }
     }
+}
+
+enum class FilterIntent {
+    ASC,
+    DATE
 }
 

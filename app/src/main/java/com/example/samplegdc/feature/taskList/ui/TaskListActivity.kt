@@ -10,6 +10,7 @@ import com.example.samplegdc.application.GdcApplication
 import com.example.samplegdc.domain.TaskRepository
 import com.example.samplegdc.feature.taskAdd.TaskAddActivity
 import com.example.samplegdc.feature.taskDetail.TaskDetailActivity
+import com.example.samplegdc.feature.taskList.FilterIntent
 import com.example.samplegdc.feature.taskList.TasksViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_task_list.*
@@ -39,7 +40,6 @@ class TaskListActivity : AppCompatActivity() {
         ).get(TasksViewModel::class.java)
 
         initObservers()
-        viewModel.getAllTasks(this)
 
         fabAddTask.setOnClickListener {
             val intent = TaskAddActivity.start(this)
@@ -55,16 +55,17 @@ class TaskListActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_delete_all -> viewModel.deleteAll()
-            R.id.action_order_date -> viewModel.orderByDateASC()
+            R.id.action_order_abc -> viewModel.filter(FilterIntent.ASC)
+            R.id.action_order_date -> viewModel.filter(FilterIntent.DATE)
             else -> return super.onOptionsItemSelected(item)
         }
         return false
     }
 
     private fun initObservers() {
-        viewModel.allTasks.observe(this) {
+        viewModel.allTasks.observe(this, {
             tasksAdapter.submit(it)
-        }
+        })
     }
 
     private fun tasksClickListener(id: Long) {
