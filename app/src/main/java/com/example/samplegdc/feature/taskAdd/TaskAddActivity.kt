@@ -115,11 +115,13 @@ class TaskAddActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
 
     override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
         taskDate = taskDate.copy(day = dayOfMonth, month = month, year = year)
-        txtTaskNewDate.text = "$dayOfMonth/${this.taskDate.month}/$year"
+        val date = "$dayOfMonth/${this.taskDate.month}/$year"
+        txtTaskNewDate.text = date
     }
 
     override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
         taskDate = taskDate.copy(minute = minute, hour = hourOfDay)
-        txtTaskNewTime.text = "$hourOfDay:$minute"
+        val time = "$hourOfDay:$minute"
+        txtTaskNewTime.text = time
     }
 }
