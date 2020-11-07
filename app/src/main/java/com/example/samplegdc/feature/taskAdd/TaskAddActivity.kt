@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.widget.DatePicker
 import android.widget.TimePicker
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
@@ -35,7 +36,6 @@ class TaskAddActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
     lateinit var repository: TaskRepository
 
     private var taskDate: TaskDateDto = TaskDateDto()
-    private lateinit var offsetDateTime: OffsetDateTime
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,11 +60,11 @@ class TaskAddActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
         btnTaskNewSave.setOnClickListener {
             val name = edtTaskNewName.text.toString()
             if (name.isNotEmpty()) {
+                var offsetDateTime: OffsetDateTime? = null
                 if (taskDate.isDateReady() && taskDate.isTimeReady()) {
                     offsetDateTime = setTaskDateTime(taskDate)
                 } else {
-                    Snackbar.make(edtTaskNewName, R.string.date_not_set, Snackbar.LENGTH_LONG)
-                        .show()
+                    Toast.makeText(this, R.string.date_not_set, Toast.LENGTH_LONG).show()
                 }
                 viewModel.insert(TaskDto(name = name, createdAt = offsetDateTime))
                 finish()
